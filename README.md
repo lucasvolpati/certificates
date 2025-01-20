@@ -15,7 +15,7 @@ Muitas vezes precisamos gerar um PDF com imagem no fundo, seja ele algum convite
 
 ## Créditos
 
-* <a href="http://www.lnborges.com.br/" target="_blank">Projeto original</a>
+* <a href="https://github.com/LincolnBorges/gerador-certificado-php" target="_blank">Projeto original</a>
 
 ## Licença
 
