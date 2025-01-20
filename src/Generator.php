@@ -22,8 +22,18 @@ class Generator
         return new $className;
     }
 
+    private function getConfig()
+    {
+        $configFile = __DIR__ . '/../pdfConfig.json';
+        $config = json_decode(file_get_contents($configFile));
+
+        return $config;
+    }
+
     public function make(string $pdfClass, Data $data): array
     {
+        $config = $this->getConfig();
+
         $response = [];
         foreach ($this->availableCerts as $cert) {
             $pdfInstance = $this->getInstance($pdfClass);
@@ -32,34 +42,34 @@ class Generator
             $pdfInstance->SetLineWidth(1);
             $pdfInstance->Image($cert->template,0,0,295);
 
-            // Print top text
-            $pdfInstance->SetFont('Arial', '', 22); 
-            $pdfInstance->SetXY(78,28); 
+            // Company intro
+            $pdfInstance->SetFont($config->companyIntro->fontName, '', $config->companyIntro->fontSize); 
+            $pdfInstance->SetXY($config->companyIntro->x, $config->companyIntro->y); 
             $pdfInstance->MultiCell(265, 50, mb_convert_encoding($cert->companyIntro, 'ISO-8859-1', 'UTF-8'), '', 'L', 0);
 
-            // Print person name
-            $pdfInstance->SetFont('Arial', '', 20); 
-            $pdfInstance->SetXY(20,73); 
+            // Person name
+            $pdfInstance->SetFont($config->personName->fontName, '', $config->personName->fontSize); 
+            $pdfInstance->SetXY($config->personName->x, $config->personName->y); 
             $pdfInstance->MultiCell(265, 10, mb_convert_encoding($data->personName, 'ISO-8859-1', 'UTF-8'), '', 'C', 0); 
 
-            // Print body
-            $pdfInstance->SetFont('Arial', '', 15);
-            $pdfInstance->SetXY(17,90); 
+            // Certification text
+            $pdfInstance->SetFont($config->certificationText->fontName, '', $config->certificationText->fontSize);
+            $pdfInstance->SetXY($config->certificationText->x, $config->certificationText->y); 
             $pdfInstance->MultiCell(260, 7, mb_convert_encoding($cert->certificationText, 'ISO-8859-1', 'UTF-8'), '', 'C', 0); 
 
-            // Print certificate date
-            $pdfInstance->SetFont('Arial', '', 15);
-            $pdfInstance->SetXY(20,120); 
+            // Certification Date
+            $pdfInstance->SetFont($config->certificationDate->fontName, '', $config->certificationDate->fontSize);
+            $pdfInstance->SetXY($config->certificationDate->x, $config->certificationDate->y); 
             $pdfInstance->MultiCell(265, 30, mb_convert_encoding($data->strDate, 'ISO-8859-1', 'UTF-8'), '', 'C', 0);
 
-            //Print signature name
-            $pdfInstance->SetFont('Arial', '', 15);
-            $pdfInstance->SetXY(83,154); 
+            //Person signature name
+            $pdfInstance->SetFont($config->signatureName->fontName, '', $config->signatureName->fontSize);
+            $pdfInstance->SetXY($config->signatureName->x, $config->signatureName->y); 
             $pdfInstance->MultiCell(265, 30, mb_convert_encoding($data->personName, 'ISO-8859-1', 'UTF-8'), '', 'C', 0);
 
-            //Print signature document (CPF)
-            $pdfInstance->SetFont('Arial', '', 15);
-            $pdfInstance->SetXY(83,159.9); 
+            //Person signature document (CPF)
+            $pdfInstance->SetFont($config->signatureDocument->fontName, '', $config->signatureDocument->fontSize);
+            $pdfInstance->SetXY($config->signatureDocument->x, $config->signatureDocument->y); 
             $pdfInstance->MultiCell(265, 30, 'CPF: ' . mb_convert_encoding($data->document, 'ISO-8859-1', 'UTF-8'), '', 'C', 0);
 
             $pdfdoc = $pdfInstance->Output('', 'S');

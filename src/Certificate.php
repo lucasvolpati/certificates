@@ -68,18 +68,4 @@ class Certificate
 
         return $this;
     }
-
-    // private function formatDates(string $initialDate, string $finalDate): array
-    // {
-    //     $initial = new DateTime(implode('-', array_reverse(explode('/', $initialDate))));
-    //     $final = new DateTime(implode('-', array_reverse(explode('/', $finalDate))));
-    //     $formatter = new IntlDateFormatter('pt_BR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-    //     $formatter->setPattern('d \'de\' MMMM \'de\' yyyy');
-
-    //     return [
-    //         'finalStrDate' => $formatter->format($final),
-    //         'initialBrFormat' => $initialDate,
-    //         'finalBrFormat' => $finalDate,
-    //     ];
-    // }
 }

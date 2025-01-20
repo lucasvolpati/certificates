@@ -168,7 +168,7 @@
             name: 'nr33', 
             workload: 40, 
             template: 'default.png', 
-            companyIntro: 'A Lorem Impsum, certifica que o Sr.',
+            companyIntro: 'A Empresa Lorem Impsum, certifica que o Sr.',
             certificationText: 'conclui satisfatoriamente o treinamento para entrada e trabalho em espaço confinado, em cumprimento da portaria MTE n°202, de 22 de dezembro de 2006 - publicada no DOU em 27 de dezembro de 2012, que aprova a NR 33 que trata da segurança e saúde nos trabalhos em espaços confinados. Realizado nos dias :initial_date: a :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.'
         ))->setData($data);
 

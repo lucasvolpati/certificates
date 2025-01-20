@@ -1,0 +1,38 @@
+{
+    "companyIntro": {
+        "x": "73",
+        "y": "28",
+        "fontSize": "22",
+        "fontName": "Arial"
+    },
+    "personName": {
+        "x": "20",
+        "y": "73",
+        "fontSize": "20",
+        "fontName": "Arial"
+    },
+    "certificationText": {
+        "x": "17",
+        "y": "90",
+        "fontSize": "15",
+        "fontName": "Arial"
+    },
+    "certificationDate": {
+        "x": "20",
+        "y": "120",
+        "fontSize": "15",
+        "fontName": "Arial"
+    },
+    "signatureName": {
+        "x": "83",
+        "y": "154",
+        "fontSize": "15",
+        "fontName": "Arial"
+    },
+    "signatureDocument": {
+        "x": "83",
+        "y": "159.9",
+        "fontSize": "15",
+        "fontName": "Arial"
+    }
+}
