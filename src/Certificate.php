@@ -10,9 +10,13 @@ class Certificate
 {
     private const TEMPLATES_PATH = __DIR__ . '/../storage/';
 
-    public array $data = [];
-
     public function __construct(
+        public Data $data
+        {
+            set(Data $data) {
+                $this->data = $data;
+            }
+        },
         public string $name 
         {
             set(string $name) {
@@ -43,8 +47,8 @@ class Certificate
                         ':workload:'
                     ],
                     [
-                        $this->data['initial_date'],
-                        $this->data['final_date'],
+                        $this->data->initialDate,
+                        $this->data->finalDate,
                         $this->workload
                     ],
                     $certificationText
@@ -59,13 +63,6 @@ class Certificate
             }
         }
         )
-        {}
+    {}
 
-    public function setData(Data $data): self
-    {
-        $this->data['initial_date'] = $data->initialDate;
-        $this->data['final_date'] = $data->finalDate;
-
-        return $this;
-    }
 }
