@@ -24,15 +24,15 @@
         "fontName": "Arial"
     },
     "signatureName": {
-        "x": "83",
+        "x": "105",
         "y": "154",
-        "fontSize": "15",
+        "fontSize": "14",
         "fontName": "Arial"
     },
     "signatureDocument": {
-        "x": "83",
+        "x": "105",
         "y": "159.9",
-        "fontSize": "15",
+        "fontSize": "14",
         "fontName": "Arial"
     }
 }

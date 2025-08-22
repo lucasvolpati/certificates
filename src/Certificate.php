@@ -2,8 +2,6 @@
 
 namespace Certificates;
 
-use \IntlDateFormatter;
-use \DateTime;
 use Certificates\Data;
 
 class Certificate  
@@ -29,7 +27,7 @@ class Certificate
                 $this->workload = $workload;
             }
         }, 
-        string $template
+        public string $template
         {
             set(string $fileName) {
                 $this->template = $fileName;
@@ -37,7 +35,7 @@ class Certificate
 
             get => self::TEMPLATES_PATH . $this->template;
         },
-        string $certificationText
+        public string $certificationText
         {
             set(string $certificationText) {
                 $text = str_replace(
@@ -56,7 +54,7 @@ class Certificate
                 $this->certificationText = $text;
             }
         },
-        ?string $companyIntro = null
+        public ?string $companyIntro = null
         {
             set(?string $companyIntro) {
                 $this->companyIntro = $companyIntro;
