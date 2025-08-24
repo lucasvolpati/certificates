@@ -1,9 +1,9 @@
 <?php
 
-namespace Certificates\Drivers;
+namespace PdfMaker\Drivers;
 
-use Certificates\Contracts\PdfMaker;
-use Certificates\Data;
+use PdfMaker\Contracts\PdfMaker;
+use PdfMaker\Certificates\Data;
 use Fpdf\Fpdf;
 
 class FpdfDriver implements PdfMaker
@@ -68,6 +68,6 @@ class FpdfDriver implements PdfMaker
         $configFile = __DIR__ . '/../../pdfConfig.json';
         $config = json_decode(file_get_contents($configFile));
 
-        return $config;
+        return $config->certificates;
     }
 }

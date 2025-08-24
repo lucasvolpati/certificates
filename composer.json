@@ -1,12 +1,12 @@
 {
-    "name": "lucasvolpati/certificate-generator",
+    "name": "lucasvolpati/pdf-maker",
     "type": "project",
     "require": {
         "fpdf/fpdf": "^1.86"
     },
     "autoload": {
         "psr-4": {
-            "Certificates\\": "src/"
+            "PdfMaker\\": "src/"
         }
     },
     "authors": [

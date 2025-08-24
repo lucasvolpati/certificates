@@ -1,14 +1,13 @@
 <?php
 
-namespace Certificates;
+namespace PdfMaker;
 
-use Certificates\Certificate;
-use Certificates\Data;
-use Certificates\Contracts\PdfMaker;
+use PdfMaker\Certificates\Data;
+use PdfMaker\Contracts\PdfMaker;
 
 class Generator 
 {
-    private array $crtObjects;
+    private array $arrDocuments;
 
     public function __construct(
         protected PdfMaker $pdfMaker
@@ -17,12 +16,12 @@ class Generator
 
     public function make(Data $data): array
     {
-        return $this->pdfMaker->make($data, $this->crtObjects);
+        return $this->pdfMaker->make($data, $this->arrDocuments);
     }
 
-    public function setCertificates(Certificate ...$crtObjects)
+    public function setDocuments(array $arrDocuments): self
     {
-        $this->crtObjects = $crtObjects;
+        $this->arrDocuments = $arrDocuments;
 
         return $this;
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Certificates\Contracts;
+namespace PdfMaker\Contracts;
 
-use Certificates\Data;
+use PdfMaker\Certificates\Data;
 
 interface PdfMaker
 {

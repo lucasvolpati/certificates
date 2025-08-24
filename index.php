@@ -146,17 +146,17 @@
 </html>
 
 <?php
-
+    //Exemplo gerando certificados para treinamentos em NR33 e NR 35
     require __DIR__ . '/vendor/autoload.php';
 
-    use Certificates\Generator;
-    use Certificates\Certificate;
-    use Certificates\Data;
-    use Certificates\Drivers\FpdfDriver;
+    use PdfMaker\{
+        Generator,
+        Certificates\Certificate,
+        Certificates\Data,
+        Drivers\FpdfDriver
+    };
 
     $formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
-    //Exemplo gerando certificados para treinamentos em NR33 e NR 35
 
     if($formData ) {
         $data = new Data(
@@ -166,35 +166,48 @@
             document: $formData['cpf'],
         );
 
-        $nr33 = (new Certificate(
-            data: $data,
-            name: 'nr33-vigia',
-            workload: 16,
-            template: 'fundo-nr33.png',
-            certificationText: 'conclui satisfatoriamente o treinamento para vigia, entrada e trabalho em espaço confinado, em cumprimento da portaria MTP nº 1.690, de 15 de junho de 2022 - publicada no DOU em 24 de junho de 2022, que aprova a NR 33 que trata da segurança e saúde nos trabalhos em espaços confinados. Realizado nos dias :initial_date: a :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.',
-            companyIntro: 'A Vaporterm Caldeiras, certifica que o Sr.'
-        ));
+        $certificates = [
+            [
+                'data' => $data,
+                'name' => 'nr33-vigia',
+                'workload' => 16,
+                'template' => 'fundo-nr33.png',
+                'certificationText' => 'conclui satisfatoriamente o treinamento para vigia, entrada e trabalho em espaço confinado, em cumprimento da portaria MTP nº 1.690, de 15 de junho de 2022 - publicada no DOU em 24 de junho de 2022, que aprova a NR 33 que trata da segurança e saúde nos trabalhos em espaços confinados. Realizado nos dias :initial_date: a :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.',
+                'companyIntro' => 'A Vaporterm Caldeiras, certifica que o Sr.'
+            ],
+            [
+                'data' => $data,
+                'name' => 'nr33-supervisao',
+                'workload' => 40,
+                'template' => 'fundo-nr33.png',
+                'certificationText' => 'conclui satisfatoriamente o treinamento para supervisão, entrada e trabalho em espaço confinado, em cumprimento da portaria MTP nº 1.690, de 15 de junho de 2022 - publicada no DOU em 24 de junho de 2022, que aprova a NR 33 que trata da segurança e saúde nos trabalhos em espaços confinados. Realizado nos dias :initial_date: a :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.',
+                'companyIntro' => 'A Vaporterm Caldeiras, certifica que o Sr.'
+            ],
+            [
+                'data' => $data,
+                'name' => 'nr35',
+                'workload' => 8,
+                'template' => 'fundo-nr35.png',
+                'certificationText' => 'participou do treinamento de segurança para trabalhos em altura, em cumprimento da portaria MTP nº 4.218, de 20 de dezembro de 2022 - Publicada no DOU em 21 de dezembro de 2022, que aprova a NR-35 que trata da seurança e saúde em trabalhos em altura. Realizado no dia :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.',
+                'companyIntro' => 'A Vaporterm Caldeiras, certifica que o Sr.'
+            ]
+        ];
 
-        $nr33Lider = (new Certificate(
-            data: $data,
-            name: 'nr33-supervisao',
-            workload: 40,
-            template: 'fundo-nr33.png',
-            certificationText: 'conclui satisfatoriamente o treinamento para supervisão, entrada e trabalho em espaço confinado, em cumprimento da portaria MTP nº 1.690, de 15 de junho de 2022 - publicada no DOU em 24 de junho de 2022, que aprova a NR 33 que trata da segurança e saúde nos trabalhos em espaços confinados. Realizado nos dias :initial_date: a :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.',
-            companyIntro: 'A Vaporterm Caldeiras, certifica que o Sr.'
-        ));
+        $crtObjects = [];
 
-        $nr35 = (new Certificate(
-            data: $data,
-            name: 'nr35',
-            workload: 8,
-            template: 'fundo-nr35.png',
-            certificationText: 'participou do treinamento de segurança para trabalhos em altura, em cumprimento da portaria MTP nº 4.218, de 20 de dezembro de 2022 - Publicada no DOU em 21 de dezembro de 2022, que aprova a NR-35 que trata da seurança e saúde em trabalhos em altura. Realizado no dia :final_date: na cidade de São Paulo-SP, com carga horária de :workload: horas.',
-            companyIntro: 'A Vaporterm Caldeiras, certifica que o Sr.'
-        ));
+        foreach ($certificates as $crt) {
+            $crtObjects[] = new Certificate(
+                data: $crt['data'],
+                name: $crt['name'],
+                workload: $crt['workload'],
+                template: $crt['template'],
+                certificationText: $crt['certificationText'],
+                companyIntro: $crt['companyIntro']
+            );
+        }
 
         $certGen = new Generator(new FpdfDriver())
-            ->setCertificates($nr33, $nr33Lider, $nr35)
+            ->setDocuments($crtObjects)
             ->make($data);
         
         echo "<pre>";

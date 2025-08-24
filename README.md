@@ -1,6 +1,6 @@
-# Gerador de certificado em PHP para treinamentos / workshops / cursos e etc.
+# Gerador de PDF em PHP
 
-Muitas vezes precisamos gerar um PDF com imagem no fundo, seja ele algum convite, algum comprovante e demais situações. Nesse exemplo vai ser gerado um certificado de workshop, claro que aplicando o mesmo principio pode ser usado para qualquer fim.
+Muitas vezes precisamos gerar um PDF com imagem no fundo, seja ele algum convite, algum comprovante e demais situações. Eis o projeto que você buscava.
 
 ## Requerimentos
 ```

@@ -1,6 +1,6 @@
 <?php
 
-namespace Certificates;
+namespace PdfMaker\Certificates;
 
 use \IntlDateFormatter;
 use \DateTime;

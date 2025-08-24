@@ -1,12 +1,12 @@
 <?php
 
-namespace Certificates;
+namespace PdfMaker\Certificates;
 
-use Certificates\Data;
+use PdfMaker\Certificates\Data;
 
 class Certificate  
 {
-    private const TEMPLATES_PATH = __DIR__ . '/../storage/';
+    private const TEMPLATES_PATH = __DIR__ . '/../../storage/';
 
     public function __construct(
         public Data $data
